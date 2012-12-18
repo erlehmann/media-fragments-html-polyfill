@@ -17,7 +17,8 @@
 */
 
 function seekToFragmentTime() {
-    var fragment = location.hash;
+    var url = location.href;
+    var fragment = getFragmentFromUrl(url);
     var elementid = getElementIdFromFragment(fragment);
     var element = document.getElementById(elementid);
     if (element) {
@@ -26,6 +27,10 @@ function seekToFragmentTime() {
         var mediafragment = getMediaFragmentFromFragment(fragment);
         applyMediaFragmentToElement(element, mediafragment);
     }
+}
+
+function getFragmentFromUrl(url) {
+    return url.split('#')[1];
 }
 
 function getElementIdFromFragment(fragment) {
