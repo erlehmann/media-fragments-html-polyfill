@@ -1,0 +1,13 @@
+Using this polyfill, one can link to media elements on a web page
+using fragment identifiers containing media fragments, using URLs like
+<http://example.org/podcast.html#episode1&t=01:23>.
+
+Usage requires giving an “id” attribute to HTML media elements and
+embedding the script at the bottom of the page, like:
+
+<audio id=episode1 controls>
+  <source src=episode1.oga type=audio/ogg>
+  <source src=episode1.mp3 type=audio/mpeg>
+</audio>
+
+<script src=media-fragments-html-polyfill.js></script>
