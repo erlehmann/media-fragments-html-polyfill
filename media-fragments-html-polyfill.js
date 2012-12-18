@@ -17,18 +17,13 @@
 */
 
 function seekToFragmentTime() {
-    var url = location.href;
-    var fragment = getFragmentFromUrl(url);
+    var fragment = location.hash;
     var elementid = getElementIdFromFragment(fragment);
     var element = document.getElementById(elementid);
     element.scrollIntoView();
     element.focus();  /* triggers :focus CSS pseudo-class in WebKit */
     var mediafragment = getMediaFragmentFromFragment(fragment);
     applyMediaFragmentToElement(element, mediafragment);
-}
-
-function getFragmentFromUrl(url) {
-    return url.split('#')[1];
 }
 
 function getElementIdFromFragment(fragment) {
