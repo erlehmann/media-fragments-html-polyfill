@@ -20,10 +20,12 @@ function seekToFragmentTime() {
     var fragment = location.hash;
     var elementid = getElementIdFromFragment(fragment);
     var element = document.getElementById(elementid);
-    element.scrollIntoView();
-    element.focus();  /* triggers :focus CSS pseudo-class in WebKit */
-    var mediafragment = getMediaFragmentFromFragment(fragment);
-    applyMediaFragmentToElement(element, mediafragment);
+    if (element) {
+        element.scrollIntoView();
+        element.focus();  /* triggers :focus CSS pseudo-class in WebKit */
+        var mediafragment = getMediaFragmentFromFragment(fragment);
+        applyMediaFragmentToElement(element, mediafragment);
+    }
 }
 
 function getElementIdFromFragment(fragment) {
