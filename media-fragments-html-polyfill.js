@@ -21,9 +21,9 @@
 
 this.HTMLMediaElement && (function (global) {
     function seek() {
-        var fragment = location.hash.substring(1);
-        var elementid = fragment.split('&')[0];
-        var mediafragment = fragment.split('&')[1];
+        var fragment = location.hash.substring(1).split('&');
+        var elementid = fragment.shift();
+        var mediafragment = fragment.join('&');
         var element = document.getElementById(elementid);
         if (element) {
             element.scrollIntoView();
