@@ -19,32 +19,19 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-function seekToFragmentTime() {
-    var url = location.href;
-    var fragment = location.hash.substring(1);
-    var elementid = getElementIdFromFragment(fragment);
-    var element = document.getElementById(elementid);
-    if (element) {
-        element.scrollIntoView();
-        element.focus();  /* triggers :focus CSS pseudo-class in WebKit */
-        var mediafragment = getMediaFragmentFromFragment(fragment);
-        applyMediaFragmentToElement(element, mediafragment);
+this.HTMLMediaElement && (function (global) {
+    function seek() {
+        var fragment = location.hash.substring(1);
+        var elementid = fragment.split('&')[0];
+        var mediafragment = fragment.split('&')[1];
+        var element = document.getElementById(elementid);
+        if (element) {
+            element.scrollIntoView();
+            element.focus();  /* triggers :focus CSS pseudo-class in WebKit */
+            element.src = element.currentSrc.split('#')[0] + '#' + mediafragment;
+            element.load()
+        }
     }
-}
-
-function getElementIdFromFragment(fragment) {
-    return fragment.split('&')[0];
-}
-
-function getMediaFragmentFromFragment(fragment) {
-    return fragment.split('&')[1];
-}
-
-function applyMediaFragmentToElement(element, mediafragment) {
-    var urlprefix = element.currentSrc.split('#')[0]
-    element.src = urlprefix + '#' + mediafragment;
-    element.load()
-}
-
-window.addEventListener("hashchange", seekToFragmentTime, false);
-seekToFragmentTime();
+    addEventListener("hashchange", seek, false);
+    seek();
+})(this);
