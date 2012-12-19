@@ -21,7 +21,7 @@
 
 this.HTMLMediaElement && (function (global) {
     function seek() {
-        var fragment = location.hash.substring(1).split('&');
+        var fragment = location.hash.slice(1).split('&');
         var elementid = fragment.shift();
         var mediafragment = fragment.join('&');
         var element = document.getElementById(elementid);
