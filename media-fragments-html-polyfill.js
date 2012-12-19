@@ -33,5 +33,5 @@ this.HTMLMediaElement && (function (global) {
         }
     }
     addEventListener("hashchange", seek, false);
-    seek();
+    addEventListener("DOMContentLoaded", seek, false);
 })(this);
