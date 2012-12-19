@@ -29,7 +29,7 @@ this.HTMLMediaElement && (function (global) {
             element.scrollIntoView();
             element.focus();  /* triggers :focus CSS pseudo-class in WebKit */
             element.src = element.currentSrc.split('#')[0] + '#' + mediafragment;
-            element.load()
+            element.load();
         }
     }
     addEventListener("hashchange", seek, false);
